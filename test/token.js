@@ -81,5 +81,11 @@ describe("Token Contract", function () {
         initialOwnerBalance
       );
     });
+    it("Should check the balance after transfer", async function () {
+      const initialAccount1Balance = await hardhatToken.balanceOf(account1.address);
+      await hardhatToken.transfer(account1.address, 10);
+      const finalAccount1balance = await hardhatToken.balanceOf(account1.address);
+      expect(initialAccount1Balance+10).to.equal(finalAccount1balance);
+    });
   });
 });
